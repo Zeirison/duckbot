@@ -3,7 +3,7 @@ import sys
 import telepot
 import time
 
-bot = telepot.Bot('BOT_TOKEN_HERE')
+bot = telepot.Bot(sys.argv[1])
 
 from telepot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 
