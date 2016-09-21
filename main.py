@@ -13,7 +13,7 @@ def on_inline_query(msg):
         print('Inline Query:', query_id, from_id, query_string)
         response = get_zci(query_string)
         articles = [InlineQueryResultArticle(
-                        id=from_id,
+                        id=str(from_id),
                         title=response,
                         input_message_content=InputTextMessageContent(
                             message_text="Result for '{}':\n".format(query_string) + get_zci(query_string)
