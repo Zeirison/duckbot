@@ -1,7 +1,11 @@
 from duckduckgo import *
+import group_utilities
 import sys
 import telepot
 import time
+from random import randrange
+
+stfu_phrases = group_utilities.read_lines('stfu_phrases.txt')
 
 bot = telepot.Bot(sys.argv[1])
 
@@ -32,7 +36,7 @@ def on_chat(msg):
     # Handle 'shutthefuckup' command
     if msg['entities'][0]['type'] == 'bot_command':
         if msg['text'] == '/shutthefuckup@duckans_bot':
-            bot.sendMessage(msg['chat']['id'], 'stfu')
+            bot.sendMessage(msg['chat']['id'], stfu_phrases[randrange(len(stfu_phrases))])
 
 
 answerer = telepot.helper.Answerer(bot)
