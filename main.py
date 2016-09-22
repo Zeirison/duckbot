@@ -29,15 +29,11 @@ def on_chosen_inline_result(msg):
     print ('Chosen Inline Result:', result_id, from_id, query_string)
 
 def on_chat(msg):
+    # Handle 'shutthefuckup' command
     if msg['entities'][0]['type'] == 'bot_command':
         if msg['text'] == '/shutthefuckup@duckans_bot':
             bot.sendMessage(msg['chat']['id'], 'stfu')
 
-# def on_shutthefuckup(msg):
-#     try:
-#         bot.sendMessage(['chat']['id'], 'listen to brother {}'.format(msg['from']['first_name']))
-#     except Error:
-#         print 'Msg send failed'
 
 answerer = telepot.helper.Answerer(bot)
 
