@@ -45,10 +45,11 @@ def on_chat(msg):
 
 answerer = telepot.helper.Answerer(bot)
 
-bot.message_loop({'inline_query': on_inline_query,
-                  'chosen_inline_result': on_chosen_inline_result,
-                  'chat': on_chat},
-                 run_forever='Listening ...')
+if __name__ == '__main__':
+    bot.message_loop({'inline_query': on_inline_query,
+                      'chosen_inline_result': on_chosen_inline_result,
+                      'chat': on_chat},
+                     run_forever='Listening ...')
 
-while 1:
-    time.sleep(10)
+    while 1:
+        time.sleep(10)
