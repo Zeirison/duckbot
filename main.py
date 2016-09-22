@@ -33,10 +33,14 @@ def on_chosen_inline_result(msg):
     print ('Chosen Inline Result:', result_id, from_id, query_string)
 
 def on_chat(msg):
-    # Handle 'shutthefuckup' command
-    if msg['entities'][0]['type'] == 'bot_command':
-        if msg['text'] == '/shutthefuckup@duckans_bot':
-            bot.sendMessage(msg['chat']['id'], stfu_phrases[randrange(len(stfu_phrases))])
+    try:
+        if msg['entities'][0]['type'] == 'bot_command':
+            # Handle commands
+            if msg['text'][:len('/shutthefuckup')] == '/shutthefuckup':
+                bot.sendMessage(msg['chat']['id'], stfu_phrases[randrange(len(stfu_phrases))])
+    except KeyError:
+        pass
+
 
 
 answerer = telepot.helper.Answerer(bot)
