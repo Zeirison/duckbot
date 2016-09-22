@@ -1,4 +1,3 @@
-import random
 def read_lines(filename):
     lines = []
     try:
@@ -8,8 +7,3 @@ def read_lines(filename):
     except IOError:
         print 'Failed to open {}'.format(filename)
     return lines
-
-stfu_phrases = read_lines('stfu_phrases.txt')
-
-for i in range(10):
-    print stfu_phrases[random.randrange(len(stfu_phrases))]
