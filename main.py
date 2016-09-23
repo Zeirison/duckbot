@@ -1,9 +1,7 @@
 from duckduckgo import *
-import group_utilities
 import sys
 import telepot
 import time
-from random import randrange
 
 stfu_phrases = group_utilities.read_lines('stfu_phrases.txt')
 
@@ -32,23 +30,11 @@ def on_chosen_inline_result(msg):
     result_id, from_id, query_string = telepot.glance(msg, flavor='chosen_inline_result')
     print ('Chosen Inline Result:', result_id, from_id, query_string)
 
-def on_chat(msg):
-    try:
-        if msg['entities'][0]['type'] == 'bot_command':
-            # Handle commands
-            if msg['text'][:len('/shutthefuckup')] == '/shutthefuckup':
-                bot.sendMessage(msg['chat']['id'], stfu_phrases[randrange(len(stfu_phrases))])
-    except KeyError:
-        pass
-
-
-
 answerer = telepot.helper.Answerer(bot)
 
 if __name__ == '__main__':
     bot.message_loop({'inline_query': on_inline_query,
-                      'chosen_inline_result': on_chosen_inline_result,
-                      'chat': on_chat},
+                      'chosen_inline_result': on_chosen_inline_result},
                      run_forever='Listening ...')
 
     while 1:
