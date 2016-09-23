@@ -34,14 +34,14 @@ def chat_handler(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
 
     if content_type == 'text':
-        try: # – if 'entities' key exists it's not a normal text message
+        try: # - if 'entities' key exists it's not a normal text message
             if msg['entities'][0]['type'] == 'bot_command':
                 # Handle commands
                 if msg['text'][:len('/help')] == '/help':
                     bot.sendMessage(chat_id, '@duckans_bot works like @gif, use it to search DuckDuckGo in-line.')
                 # if msg[text][:len('/bot command')] == '/bot command':
                     #do something
-        except KeyError: # – if not, it is a normal text message
+        except KeyError: # - if not, it is a normal text message
 answerer = telepot.helper.Answerer(bot)
 
 if __name__ == '__main__':
