@@ -4,21 +4,23 @@ import telepot
 import time
 
 bot = telepot.Bot(sys.argv[1])
-
+BOT_NAME = '@duck_bot'
 from telepot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 
 def on_inline_query(msg):
     def compute():
         query_id, from_id, query_string = telepot.glance(msg, flavor='inline_query')
         print('Inline Query:', query_id, from_id, query_string)
-        response = get_zci(query_string)
-        articles = [InlineQueryResultArticle(
-                        id='abc',
-                        title=response,
-                        input_message_content=InputTextMessageContent(
-                            message_text="Result for '{}':\n".format(query_string) + get_zci(query_string)
-                        )
-                   )]
+        articles = []
+        if len(query_string) > 0:
+            response = get_zci(query_string)
+            articles = [InlineQueryResultArticle(
+                            id='abc',
+                            title=response,
+                            input_message_content=InputTextMessageContent(
+                                message_text="Result for '{}':\n".format(query_string) + get_zci(query_string)
+                            )
+                       )]
 
         return articles
 
