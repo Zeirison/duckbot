@@ -146,11 +146,8 @@ def get_zci(q, web_fallback=True, priority=['answer', 'abstract', 'related.0', '
     passed to query. This method will fall back to 'Sorry, no results.'
     if it cannot find anything.'''
 
+    ddg = query('\\'+q, **kwargs)
     response = ''
-    if len(q) > 0:
-        ddg = query('\\'+q, **kwargs)
-    else:
-        return response
 
     for p in priority:
         ps = p.split('.')
