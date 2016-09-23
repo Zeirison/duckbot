@@ -1,11 +1,10 @@
-from duckduckgo import *
 import sys
 import telepot
 import time
+from duckduckgo import *
+from telepot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 
 bot = telepot.Bot(sys.argv[1])
-
-from telepot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 
 def on_inline_query(msg):
     def compute():
