@@ -42,6 +42,7 @@ def chat_handler(msg):
                 # if msg[text][:len('/bot command')] == '/bot command':
                     #do something
         except KeyError: # - if not, it is a normal text message
+            pass
 answerer = telepot.helper.Answerer(bot)
 
 if __name__ == '__main__':
