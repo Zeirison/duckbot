@@ -4,7 +4,7 @@ import telepot
 import time
 
 bot = telepot.Bot(sys.argv[1])
-BOT_NAME = '@duck_bot'
+
 from telepot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 
 def on_inline_query(msg):
