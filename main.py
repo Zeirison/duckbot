@@ -3,8 +3,6 @@ import sys
 import telepot
 import time
 
-stfu_phrases = group_utilities.read_lines('stfu_phrases.txt')
-
 bot = telepot.Bot(sys.argv[1])
 
 from telepot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
