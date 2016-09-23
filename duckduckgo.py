@@ -57,12 +57,7 @@ def query(query, useragent='python-duckduckgo '+str(__version__), safesearch=Fal
     try:
         json = j.loads(response.read())
     except ValueError:
-        time.sleep(50)
-        json = j.loads(response.read())
-        try:
-            json = j.loads(response.read())
-        except ValueError:
-            return False
+        return False
 
     response.close()
     return Results(json)
@@ -151,10 +146,11 @@ def get_zci(q, web_fallback=True, priority=['answer', 'abstract', 'related.0', '
     passed to query. This method will fall back to 'Sorry, no results.'
     if it cannot find anything.'''
 
-    ddg = query('\\'+q, **kwargs)
-    if not ddg:
-        sys.exit()
     response = ''
+    if len(q) > 0:
+        ddg = query('\\'+q, **kwargs)
+    else:
+        return response
 
     for p in priority:
         ps = p.split('.')
