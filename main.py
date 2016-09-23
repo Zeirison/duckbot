@@ -3,6 +3,8 @@ import sys
 import telepot
 import time
 
+stfu_phrases = group_utilities.read_lines('stfu_phrases.txt')
+
 bot = telepot.Bot(sys.argv[1])
 
 from telepot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
@@ -28,6 +30,18 @@ def on_chosen_inline_result(msg):
     result_id, from_id, query_string = telepot.glance(msg, flavor='chosen_inline_result')
     print ('Chosen Inline Result:', result_id, from_id, query_string)
 
+def chat_handler(msg):
+    content_type, chat_type, chat_id = telepot.glance(msg)
+
+    if content_type == 'text':
+        try: # – if 'entities' key exists it's not a normal text message
+            if msg['entities'][0]['type'] == 'bot_command':
+                # Handle commands
+                if msg['text'][:len('/help')] == '/help':
+                    bot.sendMessage(chat_id, '@duckans_bot works like @gif, use it to search DuckDuckGo in-line.')
+                # if msg[text][:len('/bot command')] == '/bot command':
+                    #do something
+        except KeyError: # – if not, it is a normal text message
 answerer = telepot.helper.Answerer(bot)
 
 if __name__ == '__main__':
