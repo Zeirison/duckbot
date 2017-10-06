@@ -1,10 +1,15 @@
 import sys
+import os
 import telepot
 import time
 from duckduckgo import *
 from telepot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 
-bot = telepot.Bot(sys.argv[1])
+#fetching our BOT_TOKEN
+try:
+    bot = telepot.Bot(os.environ['BOT_TOKEN']) #Hosting the bot on Heroku
+except KeyError:
+    bot = telepot.Bot(sys.argv[1])
 
 def on_inline_query(msg):
     def compute():
